@@ -1,0 +1,16 @@
+.header-container {
+    text-align: center;
+    margin: 50px auto;
+}
+
+#seconds-remain {
+    text-align: center;
+    font-weight: normal;
+    margin: 50px auto;
+    margin-bottom: 100px;
+}
+
+#start-button {
+    padding: 50px 175px 50px 175px;
+    text-align: center;
+}

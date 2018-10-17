@@ -5,34 +5,37 @@
     4 answer choices for each.
         User will only be able to choose ONE answer.
         Presses submit and page reloads.
-        Answer revealed after user presses submit.
+        Answers revealed after user presses submit.
             **probably dynamically inserted**
             Correctly Answered: 
             Incorrectly Answered: 
             Unanswered Questions: 
+            Take Quiz Again
 */
 
 // Goal: Declare necessary variables.
 // Declare var secondRemain & set to 0.
-var secondsRemain = 0;
+var secondsRemain = 60;
 // Declare var clockRunning & set to false.
 var clockRunning = false;
 
 // Create a function declaration & name it startCount
-function startCount(){
-// Use setInterval to start Count    
-}
-
-// Goal: Everything except Start Button hidden. User clicks on Start Button to begin game.
-// Select the header div & create callback function that selects class ".header-container" & hide the content.
-$("div").ready(function hideHeader(){
-    $(".header-container").hide();
-// Select the button element & create callback function to click the "Start" button.
-    $("button").click(function clickStart() {
-    // select ID associated with the button & hide button.
-        $("#button").hide();
-        $(".header-container").show();
-
+$(document).ready(function(){
+    $(".header-container").hide("slow", function {
+        $("button").click(function clickStart() {
+            $("#button").hide();
+            $(".header-container").show();
     });
-        
 });
+});
+
+// // // Goal: Everything except Start Button hidden. User clicks on Start Button to begin game.
+// // // Select the header div & create a callback function that selects class ".header-container" & hides the content.
+// // // Select the button element & create callback function to click the "Start" button.
+// //     $("button").click(function clickStart() {
+// //     // select ID associated with the button & hide button.
+// //         $("#button").hide();
+// //         $(".header-container").show();
+
+//     function startCount(){
+//         // Use setInterval to start Count

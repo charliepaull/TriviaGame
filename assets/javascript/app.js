@@ -50,19 +50,17 @@ $(document).ready(function(){
             // set clock to start running
             clockRunning = true;
             // decrease stopwatch.time total by 1
-            stopwatch.time--;
-       } 
+            stopwatch.time--; 
+    }
+    },
+    // Create a stop function
+    stop: function isTimeUp() {
+        // Declare IF function when stopwatch.time === 0
+        if (stopwatch.time === 0){
+            clockRunning = false;
+        }
     }
     }
-//     function startCount(){
-//         // Use setInterval to start Count
-
-// Create a function declaration & name it startCount
-
-
-
-
-
 
 
 });

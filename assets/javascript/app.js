@@ -21,12 +21,11 @@ var clockRunning = false;
 
 // Create a function declaration & name it startCount
 $(document).ready(function(){
-    $(".header-container").hide("slow", function {
+    $(".header-container").hide("medium");
         $("button").click(function clickStart() {
             $("#button").hide();
             $(".header-container").show();
     });
-});
 });
 
 // // // Goal: Everything except Start Button hidden. User clicks on Start Button to begin game.

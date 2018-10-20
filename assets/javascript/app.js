@@ -32,15 +32,20 @@ $(document).ready(function(){
     var incorrect = 0;
     // Declare var unanswered & start it at 0;
     var unanswered = 0;
+    /*Declare var interval & use setInterval method with
+    parameters countdown, 1000)*/
+    var interval = setInterval(countdown, 1000);
+
 
     // Goal: Everything except Start Button hidden. User clicks on Start Button to begin game.
     // Select the class .header-container & use a method to hide it 
     $(".header-container").hide();
+    $("#try-again").hide();
     //Select button element, use click method & declare a callback function named clickStart
         $("button").click(function() {
             $("#button").hide();
             $(".header-container").show();
-            $("#try-again").hide();
+            $("#try-again").show();
     });
 
     // Goal: Begin time countdown
@@ -72,17 +77,14 @@ $(document).ready(function(){
     }
 
     countdown();
-    /*Declare var interval & use setInterval method with
-    parameters countdown, 1000)*/
-    var interval = setInterval(countdown, 1000);
 
     
 
-   
 
-
-// Goal: Create object with questions & answers using key: value
-// Declare variable
+// Goal: Create object nested inside array with questions & answers using key: value
+// answer options will be in an array, can be called based off index
+// Declare variable and set it equal to an array
+// create a
 var trivia = [
     {
         q: "Who's on first?",
@@ -95,7 +97,7 @@ var trivia = [
         a: "What",
     },
     {
-        q: "I Don't Know who's on third?",
+        q: "I Don't Know, who's on third?",
         options: ["I Don't Know", "Who", "Because"],
         a: "I Don't Know",
     },
@@ -113,10 +115,31 @@ var trivia = [
         q: "What year was this sketch written?",
         options: ["1940", "1984", "2000", "1938"],
         a: "1938", 
-    },
-
-
-
+    }
 
 ]
+
+//Goal: dynamically insert each trivia question, with options
+// I want to dynamically put each question in html text on my page through a for loop
+// that goes through my array of objects.
+// Let's make a for loop and add each question to the browser 
+    // set a for loop and make i < trivia.length, iterate i++
+    for (i = 0; i < trivia.length; i++){
+            $(".q-content").append("<h4>" + trivia[i].q + "<h4>"); 
+            $(".q-content").append("<p>" + trivia[i].options + "<p>");
+        // var b = $("<button>");
+        //   // Adding a class of movie-btn to our button
+        //   b.addClass("-btn");
+        //   // Adding a data-attribute
+        //   b.attr("data-name", trivia[i].options);
+        //   // Providing the initial button text
+        //   b.append(trivia[i].options);
+
+        console.log(trivia[i].q);
+        console.log(trivia[i].options);
+        console.log(trivia[i].a);
+    }
+
+
 });
+

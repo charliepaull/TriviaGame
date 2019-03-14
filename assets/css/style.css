@@ -1,13 +1,5 @@
-.header-container {
+.header-container, .start-container, .results-container {
     text-align: center;
-    margin: 50px auto;
-}
-
-#seconds-remain {
-    text-align: center;
-    font-weight: normal;
-    margin: 50px auto;
-    margin-bottom: 100px;
 }
 
 #start-button {
@@ -15,6 +7,11 @@
     text-align: center;
 }
 
-.results {
-    align-content: center;
+#time, #show-time {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.trivia-container {
+    margin-top: 20px;
 }

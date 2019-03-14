@@ -102,7 +102,7 @@ $(document).ready(function(){
 
     // Goal: Begin time countdown
     // create a function & name is countdown
-    function countdown() {
+    function gameContent() {
         // Create on-click function, triggered when "Start" is clicked (#start-button)
         document.querySelector("#start-button") = function () {
         // show Totally Trivial Trivia! & Seconds Remaining header
@@ -111,11 +111,34 @@ $(document).ready(function(){
         // $("#seconds-remain").html("Seconds Remaining: " + timeLeft);
 
         // Goal: dynamically enter the questions & options to the page.
+        // Create for loop to create each question & option tags within a div (append to div at end)
+        for (var i = 0; i < trivia.length; i++){
         // Declare a var qBlock & set it to a div
-        var qBlock = document.creatElement("div");
-        
-        
-        
+        var block = $("div"); //document.creatElement - JS method
+        // give qBlock a class
+        document.querySelector(block).className = "q-options"; 
+        // Make a p tag to hold question (iterate through each value within object)
+        var p = document.creatElement("p");
+        // add class to question p tag
+        document.getElementById("p").className = "question";
+        // create content to append
+        var question = document.createTextNode(trivia[i].options);
+        // add question to p tag (using .appendChild)
+        p.appendChild(question);
+
+        // Make a p tag to hold options (iterate through each value within object)
+        var p = document.creatElement("p");
+        // add class to options p tag
+        document.getElementById("p").className = "options";
+        // create content to append
+        var options = document.createTextNode(trivia[i].options);
+        // add options to p tag (using .appendChild)
+        p.appendChild(options);
+
+        gameContent();
+
+
+
         // set IF timeLeft equal to zero
         if (timeLeft === 0){
         // clearTimeout (built in method) timerId to end timer at zero.
@@ -140,7 +163,7 @@ $(document).ready(function(){
         // });
     }
 
-    countdown();
+    
 
     
 
@@ -170,5 +193,5 @@ $(document).ready(function(){
     }};
     triviaDisplay();
 
-}});
+});
 

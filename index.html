@@ -11,29 +11,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="header-container">
-            <h1 id="trivia">Totally Trivial Trivia!</h1>
-            <h4 id="seconds-remain"></h4>
-        </div>
-        <div id="button">
+    <div class="header-container">
+        <h1 id="trivia">Totally Trivial Trivia!</h1>
+    </div>    
+    <div class="start-container">
+        <h1>You have 30 seconds to answer all the questions. Good luck!</h1>
         <button id="start-button">Start</button>
-        </div>
-        <div id="content"></div>
-        <div id="option-content"></div>
     </div>
-    <div class="results">
-        <h4 id="time-end"></h4>
-        <h4 id="right"></h4>
-        <h4 id="wrong"></h4>
-        <h4 id="unanswered"></h4>
+    <div class="trivia-container">
+        <div id="time">Time Remaining: 
+            <span id="show-timer">30 </span> Seconds
+        </div>
+        <div class="question-container" class="q"></div>
+    </div>
+    <div class="results-container">
+        <h4 id="time-end">Time's Up!</h4>
+        <h4 id="right">Correct Answers: </h4>
+        <h4 id="wrong">Incorrect Answers: </h4>
+        <h4 id="unanswered">Unanswered Questions: </h4>
         <br>
         <button id="try-again">Take Quiz Again!</button>
     </div>
-    <!-- <style>
-        <button type="button" class="btn btn-primary btn-lg">Large button</button>
-        <button type="button" class="btn btn-secondary btn-lg">Large button</button>
-    </style> -->
 </body>
-<script src="assets/javascript/app.js"></script>
+<script src="assets/javascript/app-scratch.js"></script>
 </html>

@@ -2,16 +2,58 @@
 
 $("document").ready(function(){
 
-    $()
+    // hide some stuff first - done in CSS 
+    // will show after on-click start
 
-    // declare my variables.
-    let timeLeft = 5;
-    let correct = 0;
-    let incorrect = 0;
-    let unanswered = 0;
+    // onclick to start trivia game
+    // startFunction = () => {
+    //     console.log("hello!");
+    $("#start-button").on("click", function(){
+        console.log("hi there!"); //works 
+        // show timer
+        $("#time").show();
+        // show trivia-container
+        $(".trivia-container").show();
+        // hide start container
+        $(".start-container").hide();
+        // start timer
+        setInterval(gameTime.timeLeft);
 
+        
+
+    })
+    // }
+
+    resultFunction = () => {
+        // hide questions
+        $(".trivia-container").hide();
+        // show results
+        $(".results-container").show();
+
+        // show user stats
+        $("#time-end").show();
+        $("#right").text(gameTime.correct);
+        $("#wrong").text(gameTime.incorrect);
+        $("#unanswered").text(gameTime.unasnwered);
+    }
+
+    // declare my variables within an object
+
+    let gameTime = {
+        timeLeft: 5,
+        correct: 0,
+        incorrect: 0,
+        unanswered: 0,
+    }
+
+    setInterval(function(){
+        gameTime.timeLeft--;
+        if (gameTime.timeLeft === 0){
+            this.resultFunction();
+        }
+    }, 1000);
     // setting countdown interval
-    let interval = setInterval(countdown, 1000);
+    // let interval = setInterval(countdown, 1000);
 
     // trivia questions - array of objects
     var trivia = [{
@@ -47,6 +89,6 @@ $("document").ready(function(){
 
 ]
 
-
+// startFunction();
 
 })

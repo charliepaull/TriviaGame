@@ -25,3 +25,21 @@
     display: none;
 }
 
+.question-container {
+    margin: 0 auto;
+    width: 68%;
+}
+
+h2 {
+    margin: 15px 0 15px 0; 
+}
+
+input {
+    margin: 5px 10px 5px 10px;
+}
+
+.btn-light {
+    align-content: center;
+    padding: 30px;
+    margin: 50px 300px 50px 300px
+}

@@ -11,7 +11,7 @@ $("document").ready(function(){
     $("#start-button").on("click", function(){
         console.log("hi there!"); //works 
         // show timer
-        $("#time").show();
+        $("#time").text("Time Remaining: " +  gameTime.timeLeft);
         // show trivia-container
         $(".trivia-container").show();
         // hide start container
@@ -19,7 +19,14 @@ $("document").ready(function(){
         // start timer
         setInterval(gameTime.timeLeft);
 
-        
+        // append questions to .question-container div
+        for (var i = 0; i < trivia.length; i++) {
+            $(".question-container").append('<h2>' + trivia[i].q + '</h2>');
+            for (var j = 0; j < trivia[i].options.length; j++){
+              $(".question-container").append("<input type='radio' name='rad-answer' id='question" + i + "' value='" + trivia[i].options[j] + "'>","<label>" + trivia[i].options[j] + "</label>");
+            }
+            }
+            $(".question-container").append("<br><button type='button' class='btn btn-light' id='submit'>Submit Your Answers!</button>");
 
     })
     // }
@@ -49,7 +56,7 @@ $("document").ready(function(){
     setInterval(function(){
         gameTime.timeLeft--;
         if (gameTime.timeLeft === 0){
-            this.resultFunction();
+            // this.resultFunction();
         }
     }, 1000);
     // setting countdown interval

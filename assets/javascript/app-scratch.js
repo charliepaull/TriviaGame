@@ -10,14 +10,15 @@ $("document").ready(function(){
     //     console.log("hello!");
     $("#start-button").on("click", function(){
         console.log("hi there!"); //works 
-        // show timer
-        $("#time").text("Time Remaining: " +  gameTime.timeLeft);
         // show trivia-container
         $(".trivia-container").show();
         // hide start container
         $(".start-container").hide();
-        // start timer
-        setInterval(gameTime.timeLeft);
+        // show timer
+        // gameTime.setInterval;
+        timer = setInterval(gameTime.countdown, 1000);
+
+
 
         // append questions to .question-container div
         for (var i = 0; i < trivia.length; i++) {
@@ -32,6 +33,9 @@ $("document").ready(function(){
     // }
 
     resultFunction = () => {
+        console.log("do I fire?"); // this fires!
+        // clear and stop timer
+        clearInterval(timer);
         // hide questions
         $(".trivia-container").hide();
         // show results
@@ -43,6 +47,8 @@ $("document").ready(function(){
         $("#wrong").text(gameTime.incorrect);
         $("#unanswered").text(gameTime.unasnwered);
     }
+    // timer interval
+    var timer; 
 
     // declare my variables within an object
 
@@ -51,16 +57,20 @@ $("document").ready(function(){
         correct: 0,
         incorrect: 0,
         unanswered: 0,
-    }
-
-    setInterval(function(){
-        gameTime.timeLeft--;
-        if (gameTime.timeLeft === 0){
-            // this.resultFunction();
+        countdown: function(){
+            console.log("do you see me?"); //yes I see you
+            // show timer
+            $("#time").text("Time Remaining: " + gameTime.timeLeft);
+            // counting down
+            gameTime.timeLeft--;
+        // set up time interval
+            if (gameTime.timeLeft <= 0){
+                console.log("time is up!");
+                // clearInterval(interval)
+                this.resultFunction();
         }
-    }, 1000);
-    // setting countdown interval
-    // let interval = setInterval(countdown, 1000);
+    }, 
+    }
 
     // trivia questions - array of objects
     var trivia = [{
@@ -95,7 +105,5 @@ $("document").ready(function(){
     }
 
 ]
-
-// startFunction();
 
 })

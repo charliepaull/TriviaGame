@@ -23,12 +23,15 @@ $("document").ready(function(){
         for (var i = 0; i < trivia.length; i++) {
             $(".question-container").append('<h2>' + trivia[i].q + '</h2>');
             for (var j = 0; j < trivia[i].options.length; j++){
-              $(".question-container").append("<input type='radio' name='rad-answer' id='question" + i + "' value='" + trivia[i].options[j] + "'>","<label>" + trivia[i].options[j] + "</label>");
+              $(".question-container").append("<input type='radio' name='rad-answer' + [i]" + " value='" + trivia[i].options[j] + "'/>","<label>" + trivia[i].options[j] + "</label>");
             }
             }
             $(".question-container").append("<br><button type='button' class='btn btn-light' id='submit'>Submit Your Answers!</button>");
 
-    })
+    })	 
+    
+    // id='question" + [i] + "'/>"
+    
     
     // submit on-click function
     $(".question-container").on("click", "#submit", function(){
@@ -65,7 +68,7 @@ $("document").ready(function(){
     // declare my variables within an object
 
     let gameTime = {
-        timeLeft: 20,
+        timeLeft: 100,
         correct: 0,
         incorrect: 0,
         unanswered: 0,
@@ -89,7 +92,7 @@ $("document").ready(function(){
                 // create variable to capture value
 
                 // capture value of user answer
-                var userAns = $("input[name=rad-answer]:checked").val();
+                var userAns = $("input[name]:checked").val();
                 console.log(userAns) //this captures
                 
 
@@ -100,17 +103,23 @@ $("document").ready(function(){
                 console.log(ans); // yes this captures!
                 // logic, is user answer = a? 
 
+                // unanswered questions
+                if (userAns === undefined){
+                    console.log("nothing here!");
+                    gameTime.unanswered++;
+                }
+
                 // // user didn't answer question
-                // if (ans!= trivia[i].a){
-                //     console.log(false);
-                //     gameTime.incorrect++;
-                // }
+                if (ans!= userAns){
+                    console.log(false);
+                    gameTime.incorrect++;
+                }
 
                 // // user answered question correctly
-                // if (ans === trivia[i].a) {
-                //     console.log(true); //this works
-                //     gameTime.correct++;
-                // }
+                if (ans === userAns) {
+                    console.log(true); //this works
+                    gameTime.correct++;
+                }
 
             }
         }
@@ -119,23 +128,23 @@ $("document").ready(function(){
     // trivia questions - array of objects
     var trivia = [{
         q: "Who's on first?",
-        options: ["What", "Who", "I don't know"],
-        a: "Who",
+        options: ["What", "Who", "'I don't know'"],
+        a: "Who"
     },
     {
         q: "What's on second?",
         options: ["Who", "Why", "What"],
-        a: "What",
+        a: "What"
     },
     {
-        q: "I Don't Know, who's on third?",
-        options: ["I Don't Know", "Who", "Because"],
-        a: "I Don't Know",
+        q: "'I Don't Know', who's on third?",
+        options: ["'I Don't Know'", "Who", "Because"],
+        a: "'I Don't Know'"
     },
     {
-        q: "If the catcher is 'Today', the Shortshop is 'I Don't Give A Darn', the pitcher is 'Tomorrow', and the second baseman is 'What', what's the sequence if the catcher throws to the shortstop?",
-        options: ["Today - What", "Tomorrow - I Don't Give A Darn", "Today - I Don't Give A Darn", "I Don't Give A Darn - What"],
-        a: "Today - I Don't Give A Darn",
+        q: "If the catcher is 'Today', the Shortshop is ''I Don't Give A Darn'', the pitcher is 'Tomorrow', and the second baseman is 'What', what's the sequence if the catcher throws to the shortstop?",
+        options: ["Today - What", "Tomorrow - 'I Don't Give A Darn'", "Today - 'I Don't Give A Darn'", "'I Don't Give A Darn' - What"],
+        a: "Today - 'I Don't Give A Darn'",
     },
     {
         q: "Who wrote this comedy sketch?",

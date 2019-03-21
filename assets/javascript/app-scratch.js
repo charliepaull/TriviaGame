@@ -23,14 +23,12 @@ $("document").ready(function(){
         for (var i = 0; i < trivia.length; i++) {
             $(".question-container").append('<h2>' + trivia[i].q + '</h2>');
             for (var j = 0; j < trivia[i].options.length; j++){
-              $(".question-container").append("<input type='radio' name='rad-answer' + [i]" + " value='" + trivia[i].options[j] + "'/>","<label>" + trivia[i].options[j] + "</label>");
+              $(".question-container").append("<input type='radio' name='rad-answer-" + i + "' value='" + trivia[i].options[j] + "'/>","<label>" + trivia[i].options[j] + "</label>");
             }
             }
             $(".question-container").append("<br><button type='button' class='btn btn-light' id='submit'>Submit Your Answers!</button>");
 
-    })	 
-    
-    // id='question" + [i] + "'/>"
+    })	
     
     
     // submit on-click function
@@ -57,16 +55,15 @@ $("document").ready(function(){
 
         // show user stats
         $("#time-end").show();
-        $("#right").text(gameTime.correct);
-        $("#wrong").text(gameTime.incorrect);
-        $("#unanswered").text(gameTime.unasnwered);
+        $("#right").text("Correct Answers: " + gameTime.correct);
+        $("#wrong").text("Incorrect Answers: " + gameTime.incorrect);
+        $("#unanswered").text("Unanswered Questions: " + gameTime.unanswered);
 
     }
     // timer interval
     var timer; 
 
     // declare my variables within an object
-
     let gameTime = {
         timeLeft: 100,
         correct: 0,
@@ -92,7 +89,7 @@ $("document").ready(function(){
                 // create variable to capture value
 
                 // capture value of user answer
-                var userAns = $("input[name]:checked").val();
+                var userAns = $("input[name=rad-answer-"+i+"]:checked").val();
                 console.log(userAns) //this captures
                 
 
@@ -105,22 +102,19 @@ $("document").ready(function(){
 
                 // unanswered questions
                 if (userAns === undefined){
-                    console.log("nothing here!");
+                    console.log("nothing here!"); // this works
                     gameTime.unanswered++;
-                }
 
-                // // user didn't answer question
-                if (ans!= userAns){
+                    // correct answer
+                } else if (ans === userAns) {
+                    console.log(true); //this works
+                    gameTime.correct++;
+                
+                // incorrect answer
+                } else {
                     console.log(false);
                     gameTime.incorrect++;
                 }
-
-                // // user answered question correctly
-                if (ans === userAns) {
-                    console.log(true); //this works
-                    gameTime.correct++;
-                }
-
             }
         }
     }
@@ -128,7 +122,7 @@ $("document").ready(function(){
     // trivia questions - array of objects
     var trivia = [{
         q: "Who's on first?",
-        options: ["What", "Who", "'I don't know'"],
+        options: ["What", "Who", "I Dont Know"],
         a: "Who"
     },
     {
@@ -137,14 +131,14 @@ $("document").ready(function(){
         a: "What"
     },
     {
-        q: "'I Don't Know', who's on third?",
-        options: ["'I Don't Know'", "Who", "Because"],
-        a: "'I Don't Know'"
+        q: "I Dont Know, who's on third?",
+        options: ["I Dont Know", "Who", "Because"],
+        a: "I Dont Know"
     },
     {
-        q: "If the catcher is 'Today', the Shortshop is ''I Don't Give A Darn'', the pitcher is 'Tomorrow', and the second baseman is 'What', what's the sequence if the catcher throws to the shortstop?",
-        options: ["Today - What", "Tomorrow - 'I Don't Give A Darn'", "Today - 'I Don't Give A Darn'", "'I Don't Give A Darn' - What"],
-        a: "Today - 'I Don't Give A Darn'",
+        q: "If the catcher is 'Today', the Shortshop is ''I Dont Give A Darn'', the pitcher is 'Tomorrow', and the second baseman is 'What', what's the sequence if the catcher throws to the shortstop?",
+        options: ["Today - What", "Tomorrow - I Dont Give A Darn", "Today - I Dont Give A Darn", "I Dont Give A Darn - What"],
+        a: "Today - I Dont Give A Darn",
     },
     {
         q: "Who wrote this comedy sketch?",

@@ -15,7 +15,6 @@ $("document").ready(function(){
         // hide start container
         $(".start-container").hide();
         // show timer
-        // gameTime.setInterval;
         timer = setInterval(gameTime.countdown, 1000);
 
 
@@ -30,7 +29,16 @@ $("document").ready(function(){
             $(".question-container").append("<br><button type='button' class='btn btn-light' id='submit'>Submit Your Answers!</button>");
 
     })
-    // }
+    
+    // submit on-click function
+    $(".question-container").on("click", "#submit", function(){
+        resultFunction();
+    })
+
+    // restart game button
+    $("#try-again").on("click", function(){
+        
+    })
 
     resultFunction = () => {
         console.log("do I fire?"); // this fires!
@@ -41,11 +49,15 @@ $("document").ready(function(){
         // show results
         $(".results-container").show();
 
+        // logic for correct/incorrect/unanswered qs
+        gameTime.logic();
+
         // show user stats
         $("#time-end").show();
         $("#right").text(gameTime.correct);
         $("#wrong").text(gameTime.incorrect);
         $("#unanswered").text(gameTime.unasnwered);
+
     }
     // timer interval
     var timer; 
@@ -53,23 +65,55 @@ $("document").ready(function(){
     // declare my variables within an object
 
     let gameTime = {
-        timeLeft: 5,
+        timeLeft: 20,
         correct: 0,
         incorrect: 0,
         unanswered: 0,
-        countdown: function(){
+        countdown: function () {
             console.log("do you see me?"); //yes I see you
             // show timer
-            $("#time").text("Time Remaining: " + gameTime.timeLeft);
+            $("#time").text("Time Remaining: " + gameTime.timeLeft + " Seconds");
             // counting down
             gameTime.timeLeft--;
-        // set up time interval
-            if (gameTime.timeLeft <= 0){
+            // set up time interval
+            if (gameTime.timeLeft === 0) {
                 console.log("time is up!");
-                // clearInterval(interval)
                 this.resultFunction();
+            }
+        },
+        logic: function() {
+            // GOAL: checking if answer is true
+            // loop through array of objects
+            for (var i = 0; i < trivia.length; i++){
+                // find the answer (trivia[i].a)
+                // create variable to capture value
+
+                // capture value of user answer
+                var userAns = $("input[name=rad-answer]:checked").val();
+                console.log(userAns) //this captures
+                
+
+                var ans;
+                // capture answer, push into ans
+                ans = trivia[i].a;
+                // does this value capture?
+                console.log(ans); // yes this captures!
+                // logic, is user answer = a? 
+
+                // // user didn't answer question
+                // if (ans!= trivia[i].a){
+                //     console.log(false);
+                //     gameTime.incorrect++;
+                // }
+
+                // // user answered question correctly
+                // if (ans === trivia[i].a) {
+                //     console.log(true); //this works
+                //     gameTime.correct++;
+                // }
+
+            }
         }
-    }, 
     }
 
     // trivia questions - array of objects
